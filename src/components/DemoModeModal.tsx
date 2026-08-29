@@ -66,20 +66,20 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-2xl rounded-2xl border border-cyan-500/40 bg-[#090d16] p-6 sm:p-8 shadow-2xl space-y-6">
-        
+      <div className="relative w-full max-w-2xl rounded-xl border border-slate-800 bg-slate-900 p-6 sm:p-8 space-y-6">
+
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+            <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-indigo-400">
               <Zap className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base sm:text-lg font-bold text-white">
+                <h3 className="text-base sm:text-lg font-semibold text-white">
                   Hackathon 20-Second Guided Demo
                 </h3>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/30">
+                <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">
                   {seconds}s / 20s
                 </span>
               </div>
@@ -98,24 +98,24 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+        <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
           <div
-            className="bg-gradient-to-r from-cyan-500 via-purple-500 to-emerald-400 h-full transition-all duration-1000"
+            className="bg-indigo-500 h-full transition-all duration-1000"
             style={{ width: `${(seconds / 20) * 100}%` }}
           />
         </div>
 
         {/* Dynamic Stage Display Container */}
-        <div className="min-h-[220px] rounded-xl border border-slate-800 bg-slate-950/90 p-6 flex flex-col justify-center text-center space-y-4">
-          
+        <div className="min-h-[220px] rounded-lg border border-slate-800 bg-slate-950 p-6 flex flex-col justify-center text-center space-y-4">
+
           {/* Stage 1 (0-2s): Initializing */}
           {isStage1 && (
             <div className="space-y-3 animate-in fade-in">
-              <div className="inline-flex p-3 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 animate-pulse">
+              <div className="inline-flex p-3 rounded-full bg-slate-800 text-indigo-400 animate-pulse">
                 <Cpu className="w-8 h-8" />
               </div>
-              <h4 className="text-lg font-bold text-white">Initializing Models &amp; Unified GPU Memory...</h4>
-              <p className="text-xs text-slate-400 font-mono">
+              <h4 className="text-lg font-semibold text-white">Initializing Models &amp; Unified GPU Memory...</h4>
+              <p className="text-xs text-slate-500 font-mono">
                 Target Model: Llama-3-70B &bull; Draft Model: Llama-3-8B (γ=5)
               </p>
             </div>
@@ -124,18 +124,18 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
           {/* Stage 2 (2-6s): Draft Generation */}
           {isStage2 && (
             <div className="space-y-3 animate-in fade-in">
-              <div className="inline-flex p-2.5 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-400">
+              <div className="inline-flex p-2.5 rounded-full bg-slate-800 text-indigo-400">
                 <Zap className="w-6 h-6 animate-bounce" />
               </div>
-              <h4 className="text-base font-bold text-purple-300">Phase 1: Draft Model Generates 5 Candidate Tokens</h4>
+              <h4 className="text-base font-semibold text-slate-200">Phase 1: Draft Model Generates 5 Candidate Tokens</h4>
               <div className="flex flex-wrap justify-center gap-2 font-mono text-xs">
                 {['Neural', 'networks', 'learn', 'from', 'patterns'].map((t, idx) => (
-                  <span key={idx} className="px-3 py-1 rounded bg-purple-900/60 border border-purple-500/50 text-purple-200 animate-pulse">
+                  <span key={idx} className="px-3 py-1 rounded bg-slate-800 border border-slate-700 text-slate-200 animate-pulse">
                     [{t}]
                   </span>
                 ))}
               </div>
-              <p className="text-[11px] text-slate-400 font-mono">
+              <p className="text-[11px] text-slate-500 font-mono">
                 Rapid autoregression &bull; ~3ms per token &bull; Total draft time: 15ms
               </p>
             </div>
@@ -144,19 +144,19 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
           {/* Stage 3 (6-10s): Target Verification */}
           {isStage3 && (
             <div className="space-y-3 animate-in fade-in">
-              <div className="inline-flex p-2.5 rounded-full bg-blue-950/80 border border-blue-500/40 text-blue-400">
+              <div className="inline-flex p-2.5 rounded-full bg-slate-800 text-indigo-400">
                 <Cpu className="w-6 h-6 animate-spin" />
               </div>
-              <h4 className="text-base font-bold text-blue-300">Phase 2: Target Model (70B) Verifies All 5 Tokens in Parallel</h4>
+              <h4 className="text-base font-semibold text-slate-200">Phase 2: Target Model (70B) Verifies All 5 Tokens in Parallel</h4>
               <div className="grid grid-cols-5 gap-2 max-w-md mx-auto font-mono text-xs">
                 {['Neural', 'networks', 'learn', 'from', 'patterns'].map((t, idx) => (
-                  <div key={idx} className="p-2 rounded bg-blue-900/40 border border-blue-500/50 text-blue-200">
-                    <div className="text-[9px] text-slate-400">P(tok)</div>
-                    <div className="font-bold truncate">{t}</div>
+                  <div key={idx} className="p-2 rounded bg-slate-800 border border-slate-700 text-slate-200">
+                    <div className="text-[9px] text-slate-500">P(tok)</div>
+                    <div className="font-semibold truncate">{t}</div>
                   </div>
                 ))}
               </div>
-              <p className="text-[11px] text-cyan-400 font-mono">
+              <p className="text-[11px] text-slate-400 font-mono">
                 1 Single Target Forward Pass instead of 5 Sequential Passes!
               </p>
             </div>
@@ -165,31 +165,31 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
           {/* Stage 4 (10-13s): Accepted / Rejected States */}
           {isStage4 && (
             <div className="space-y-3 animate-in fade-in">
-              <div className="inline-flex p-2.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400">
+              <div className="inline-flex p-2.5 rounded-full bg-emerald-950 text-emerald-400">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h4 className="text-base font-bold text-emerald-300">Phase 3: Acceptance &amp; Correction Resolution</h4>
+              <h4 className="text-base font-semibold text-slate-200">Phase 3: Acceptance &amp; Correction Resolution</h4>
               <div className="flex flex-wrap justify-center gap-2 font-mono text-xs">
-                <span className="px-2.5 py-1 rounded bg-emerald-900 border border-emerald-500 text-emerald-200 flex items-center gap-1 font-bold">
+                <span className="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-700 text-emerald-300 flex items-center gap-1 font-semibold">
                   <Check className="w-3.5 h-3.5" /> Neural
                 </span>
-                <span className="px-2.5 py-1 rounded bg-emerald-900 border border-emerald-500 text-emerald-200 flex items-center gap-1 font-bold">
+                <span className="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-700 text-emerald-300 flex items-center gap-1 font-semibold">
                   <Check className="w-3.5 h-3.5" /> networks
                 </span>
-                <span className="px-2.5 py-1 rounded bg-emerald-900 border border-emerald-500 text-emerald-200 flex items-center gap-1 font-bold">
+                <span className="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-700 text-emerald-300 flex items-center gap-1 font-semibold">
                   <Check className="w-3.5 h-3.5" /> learn
                 </span>
-                <span className="px-2.5 py-1 rounded bg-emerald-900 border border-emerald-500 text-emerald-200 flex items-center gap-1 font-bold">
+                <span className="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-700 text-emerald-300 flex items-center gap-1 font-semibold">
                   <Check className="w-3.5 h-3.5" /> from
                 </span>
-                <span className="px-2.5 py-1 rounded bg-rose-950 border border-rose-500 text-rose-300 line-through">
+                <span className="px-2.5 py-1 rounded bg-rose-950 border border-rose-700 text-rose-300 line-through">
                   patterns
                 </span>
-                <span className="px-2.5 py-1 rounded bg-blue-950 border border-blue-500 text-blue-200 font-bold flex items-center gap-1">
+                <span className="px-2.5 py-1 rounded bg-indigo-950 border border-indigo-700 text-indigo-200 font-semibold flex items-center gap-1">
                   <Sparkles className="w-3 h-3" /> data.
                 </span>
               </div>
-              <p className="text-[11px] text-emerald-400 font-mono">
+              <p className="text-[11px] text-slate-400 font-mono">
                 4 Draft Tokens Accepted + 1 Target Correction = 5 Tokens Emitted
               </p>
             </div>
@@ -198,22 +198,22 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
           {/* Stage 5 (13-16s): Metrics Update */}
           {isStage5 && (
             <div className="space-y-3 animate-in fade-in">
-              <div className="inline-flex p-2.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400">
+              <div className="inline-flex p-2.5 rounded-full bg-slate-800 text-indigo-400">
                 <Activity className="w-6 h-6" />
               </div>
-              <h4 className="text-base font-bold text-cyan-300">Phase 4: Telemetry &amp; Throughput Computation</h4>
+              <h4 className="text-base font-semibold text-slate-200">Phase 4: Telemetry &amp; Throughput Computation</h4>
               <div className="grid grid-cols-3 gap-3 max-w-sm mx-auto font-mono text-center">
                 <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                  <div className="text-[10px] text-slate-400">Throughput</div>
-                  <div className="text-lg font-bold text-emerald-300">82.4 t/s</div>
+                  <div className="text-[10px] text-slate-500">Throughput</div>
+                  <div className="text-lg font-semibold text-white">82.4 t/s</div>
                 </div>
                 <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                  <div className="text-[10px] text-slate-400">Acceptance (α)</div>
-                  <div className="text-lg font-bold text-purple-300">81%</div>
+                  <div className="text-[10px] text-slate-500">Acceptance (α)</div>
+                  <div className="text-lg font-semibold text-white">81%</div>
                 </div>
                 <div className="p-2 rounded bg-slate-900 border border-slate-800">
-                  <div className="text-[10px] text-slate-400">Target Calls</div>
-                  <div className="text-lg font-bold text-blue-300">20</div>
+                  <div className="text-[10px] text-slate-500">Target Calls</div>
+                  <div className="text-lg font-semibold text-white">20</div>
                 </div>
               </div>
             </div>
@@ -222,25 +222,25 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
           {/* Stage 6 (16-20s): Final Results */}
           {isStage6 && (
             <div className="space-y-4 animate-in fade-in">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-300 text-xs font-mono font-bold">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Simulation Complete</span>
+                <span>Demo Complete</span>
               </div>
               <div className="grid grid-cols-3 gap-3 max-w-md mx-auto font-mono text-center">
-                <div className="p-3 rounded-xl bg-slate-900/90 border border-cyan-500/40">
-                  <div className="text-[10px] text-slate-400 uppercase">Simulated Speedup</div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-cyan-300">1.8×</div>
+                <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="text-[10px] text-slate-500">Speedup</div>
+                  <div className="text-2xl sm:text-3xl font-semibold text-white">1.8×</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-900/90 border border-purple-500/40">
-                  <div className="text-[10px] text-slate-400 uppercase">Acceptance Rate</div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-purple-300">81%</div>
+                <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="text-[10px] text-slate-500">Acceptance Rate</div>
+                  <div className="text-2xl sm:text-3xl font-semibold text-white">81%</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-900/90 border border-blue-500/40">
-                  <div className="text-[10px] text-slate-400 uppercase">Target Calls</div>
-                  <div className="text-2xl sm:text-3xl font-extrabold text-blue-300">20</div>
+                <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+                  <div className="text-[10px] text-slate-500">Target Calls</div>
+                  <div className="text-2xl sm:text-3xl font-semibold text-white">20</div>
                 </div>
               </div>
-              <p className="text-xs text-slate-300 font-sans">
+              <p className="text-xs text-slate-400">
                 Speculative decoding successfully reduced target-model forward passes from 100 to 20 with zero loss in output quality.
               </p>
             </div>
@@ -252,15 +252,15 @@ export const DemoModeModal: React.FC<DemoModeModalProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
           <button
             onClick={restartDemo}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200 transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition-colors"
           >
-            <RotateCcw className="w-3.5 h-3.5 text-cyan-400" />
+            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
             <span>Replay Demo</span>
           </button>
 
           <button
             onClick={() => { onClose(); onJumpToPlayground(); }}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs sm:text-sm shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
           >
             <span>Open Interactive Playground</span>
             <ArrowRight className="w-4 h-4" />
