@@ -9,3 +9,8 @@ coverage/
 models/
 tools/
 server/data/benchmarkResults.json
+training/.venv/
+training/output/
+training/convert_hf_to_gguf.py
+training/train_checkpoints/
+training/wheels/

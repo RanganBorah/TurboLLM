@@ -1,0 +1,16 @@
+# Local QLoRA training deps for train_local.py / merge_and_export_gguf.py.
+# Install torch separately first, matching your CUDA driver:
+#   .venv\Scripts\python.exe -m pip install torch --index-url https://download.pytorch.org/whl/cu124
+# Then:
+#   .venv\Scripts\python.exe -m pip install -r requirements.txt
+
+transformers>=4.46
+accelerate
+peft
+bitsandbytes>=0.43.1
+datasets
+trl
+sentencepiece
+protobuf
+gguf
+numpy
