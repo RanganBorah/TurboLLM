@@ -63,10 +63,14 @@ export const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ data }) => {
             <span>Empirical Inference Evaluation</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Speculative Decoding achieved <span className="text-cyan-300">1.8× simulated speedup</span>
+            {data.comparisonSeries.length > 0
+              ? <>Speculative Decoding achieved <span className="text-cyan-300">{data.overviewMetrics.speedImprovement} measured speedup</span></>
+              : <>Run <span className="text-cyan-300">npm run benchmarks</span> to measure real results</>}
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-            Across 5 diverse task distributions (Python coding, math proofs, reasoning, and summarization) with an average draft acceptance rate of <strong>81.0%</strong>.
+            {data.comparisonSeries.length > 0
+              ? <>Across {data.comparisonSeries.length} task categories, measured on your own GPU, with an average draft acceptance rate of <strong>{data.overviewMetrics.acceptanceRate}%</strong>.</>
+              : 'No benchmark data yet — these are placeholder zeros, not fabricated numbers.'}
           </p>
         </div>
 

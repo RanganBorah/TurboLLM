@@ -23,9 +23,9 @@ export const CompletionCard: React.FC<CompletionCardProps> = ({
   onRunAgain,
   onViewBenchmark
 }) => {
-  const speedupVal = metrics.speedup ? `${metrics.speedup.toFixed(2)}×` : '1.80×';
-  const acceptanceVal = `${metrics.acceptanceRate || 81}%`;
-  const callsSaved = Math.max(0, (metrics.estimatedStandardCalls || 100) - (metrics.targetModelCalls || 20));
+  const speedupVal = metrics.speedup ? `${metrics.speedup.toFixed(2)}×` : '—';
+  const acceptanceVal = `${metrics.acceptanceRate || 0}%`;
+  const callsSaved = Math.max(0, (metrics.estimatedStandardCalls || 0) - (metrics.targetModelCalls || 0));
 
   return (
     <div className="rounded-2xl border border-cyan-500/40 bg-gradient-to-b from-cyan-950/40 via-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-2xl space-y-6 animate-in fade-in zoom-in duration-300">
@@ -95,7 +95,7 @@ export const CompletionCard: React.FC<CompletionCardProps> = ({
             {metrics.totalTokensGenerated || 100}
           </div>
           <div className="text-[10px] text-slate-400 font-mono">
-            {metrics.tokensPerSecond || 82.4} tok/sec
+            {metrics.tokensPerSecond || 0} tok/sec
           </div>
         </div>
 

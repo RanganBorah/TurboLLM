@@ -63,7 +63,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
           </div>
           <div className="mt-2 flex items-baseline gap-1">
             <span className="text-2xl sm:text-3xl font-extrabold text-cyan-300 font-mono">
-              {metrics.speedup ? `${metrics.speedup.toFixed(2)}×` : '1.80×'}
+              {metrics.speedup ? `${metrics.speedup.toFixed(2)}×` : '—'}
             </span>
           </div>
           <p className="mt-1 text-[10px] text-slate-400 font-mono">
@@ -79,12 +79,12 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
           </div>
           <div className="mt-2 flex items-baseline gap-1">
             <span className="text-2xl sm:text-3xl font-extrabold text-emerald-300 font-mono">
-              {metrics.tokensPerSecond ? metrics.tokensPerSecond.toFixed(1) : '82.4'}
+              {metrics.tokensPerSecond ? metrics.tokensPerSecond.toFixed(1) : '—'}
             </span>
             <span className="text-[11px] text-slate-400 font-mono">tok/s</span>
           </div>
           <p className="mt-1 text-[10px] text-slate-400 font-mono">
-            Standard: ~45.8 tok/s
+            Measured on your GPU
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
           </div>
           <div className="mt-2 flex items-baseline gap-1">
             <span className="text-2xl sm:text-3xl font-extrabold text-purple-300 font-mono">
-              {metrics.acceptanceRate ? `${metrics.acceptanceRate}%` : '81%'}
+              {metrics.acceptanceRate ? `${metrics.acceptanceRate}%` : '—'}
             </span>
           </div>
           <p className="mt-1 text-[10px] text-slate-400 font-mono">
@@ -119,7 +119,7 @@ export const MetricsPanel: React.FC<MetricsPanelProps> = ({
             </span>
           </div>
           <p className="mt-1 text-[10px] text-slate-400 font-mono">
-            {metrics.estimatedStandardCalls ? `${Math.max(0, metrics.estimatedStandardCalls - metrics.targetModelCalls)} calls saved` : '75% reduction'}
+            {metrics.estimatedStandardCalls ? `${Math.max(0, metrics.estimatedStandardCalls - metrics.targetModelCalls)} calls saved` : 'Run a prompt to measure'}
           </p>
         </div>
 

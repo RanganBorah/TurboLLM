@@ -75,3 +75,8 @@ fabricated numbers.
   buffered events to the UI.
 - If you see CUDA out-of-memory errors, lower `LLAMA_CTX_SIZE` in `.env`
   (e.g. to 1024) to reduce KV cache VRAM usage.
+- On a 4GB card, running Standard mode after Speculative mode keeps all
+  three `llama-server` instances (spec, draft-only, standard-only) loaded
+  concurrently, leaving only ~150MB of VRAM headroom (confirmed working,
+  but tight). If you hit OOM here, lower `LLAMA_CTX_SIZE` further or restart
+  the backend between switching modes to release the unused server.
