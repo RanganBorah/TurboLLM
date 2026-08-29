@@ -83,7 +83,12 @@ app.post('/api/decode/stream', async (req, res) => {
   });
 
   const controller = new AbortController();
-  req.on('close', () => controller.abort());
+  // res.on('close') fires when the underlying connection actually terminates
+  // (client navigated away / dropped). req.on('close') is NOT equivalent —
+  // it fires once the request body has been fully read, which happens
+  // almost immediately for a small POST body, long before the response
+  // (and the client's interest in it) is done.
+  res.on('close', () => controller.abort());
 
   try {
     assertConfigured();
