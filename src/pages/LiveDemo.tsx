@@ -184,14 +184,14 @@ export const LiveDemo: React.FC<LiveDemoProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-5">
         <div>
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400">
+            <div className="p-2 rounded-lg bg-slate-800 text-indigo-400">
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
                 Speculative Decoding Playground
               </h1>
-              <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
                 Compare conventional autoregressive generation with speculative decoding in real time.
               </p>
             </div>
@@ -200,17 +200,17 @@ export const LiveDemo: React.FC<LiveDemoProps> = ({
 
         <div className="flex items-center gap-2">
           {backendStatus === 'online' && (
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300">
+            <span className="text-xs px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800 text-emerald-300">
               ● Local llama.cpp Backend Connected
             </span>
           )}
           {backendStatus === 'offline' && (
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300">
+            <span className="text-xs px-3 py-1 rounded-full bg-rose-950/80 border border-rose-800 text-rose-300">
               ● Backend Offline — run `npm run dev:full`, see SETUP.md
             </span>
           )}
           {backendStatus === 'checking' && (
-            <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-800/80 border border-slate-600/40 text-slate-300">
+            <span className="text-xs px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300">
               ● Checking backend...
             </span>
           )}
@@ -219,7 +219,7 @@ export const LiveDemo: React.FC<LiveDemoProps> = ({
 
       {/* Error Message if Empty Prompt */}
       {errorMessage && (
-        <div className="rounded-xl border border-rose-500/40 bg-rose-950/40 p-4 flex items-center justify-between gap-3 text-xs text-rose-300 font-mono">
+        <div className="rounded-lg border border-rose-800 bg-rose-950/40 p-4 flex items-center justify-between gap-3 text-xs text-rose-300">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-rose-400" />
             <span>{errorMessage}</span>
