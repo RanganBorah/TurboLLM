@@ -15,13 +15,13 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ onTabChange }) =
       <HowItWorks />
 
       {/* 2. Mathematical Foundation of Speculative Decoding */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 sm:p-8 space-y-6 shadow-2xl">
-        <div className="flex items-center gap-2.5 border-b border-slate-850 pb-4">
-          <div className="p-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-400">
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 sm:p-8 space-y-6">
+        <div className="flex items-center gap-2.5 border-b border-slate-800 pb-4">
+          <div className="p-2 rounded-lg bg-slate-800 text-indigo-400">
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-lg font-semibold text-white">
               The Mathematics of Speculative Sampling &amp; Lossless Guarantee
             </h3>
             <p className="text-xs text-slate-400">
@@ -31,16 +31,16 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ onTabChange }) =
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
-          
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-            <h4 className="font-bold text-cyan-300 font-mono flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+
+          <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-3">
+            <h4 className="font-semibold text-slate-200 font-mono flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
               Acceptance Criterion Formula
             </h4>
             <p className="leading-relaxed">
-              Given draft token <code className="text-purple-300">x</code> with draft probability <code className="text-purple-300">q(x)</code> and target probability <code className="text-cyan-300">p(x)</code>:
+              Given draft token <code className="text-slate-300">x</code> with draft probability <code className="text-slate-300">q(x)</code> and target probability <code className="text-slate-300">p(x)</code>:
             </p>
-            <div className="p-3 rounded bg-slate-950 border border-slate-850 font-mono text-center text-xs text-emerald-400 font-bold">
+            <div className="p-3 rounded bg-slate-900 border border-slate-800 font-mono text-center text-xs text-emerald-400 font-semibold">
               Acceptance Probability = min(1,  p(x) / q(x) )
             </div>
             <p className="text-[11px] text-slate-400">
@@ -48,15 +48,15 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ onTabChange }) =
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-            <h4 className="font-bold text-emerald-300 font-mono flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-3">
+            <h4 className="font-semibold text-slate-200 font-mono flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
               Target Resampling on Rejection
             </h4>
             <p className="leading-relaxed">
-              If candidate token <code className="text-rose-300">x</code> is rejected, the target model draws a replacement token from modified residual distribution:
+              If candidate token <code className="text-slate-300">x</code> is rejected, the target model draws a replacement token from modified residual distribution:
             </p>
-            <div className="p-3 rounded bg-slate-950 border border-slate-850 font-mono text-center text-xs text-blue-400 font-bold">
+            <div className="p-3 rounded bg-slate-900 border border-slate-800 font-mono text-center text-xs text-indigo-300 font-semibold">
               p'(x) = max(0, p(x) - q(x)) / &Sigma; max(0, p(y) - q(y))
             </div>
             <p className="text-[11px] text-slate-400">
@@ -67,19 +67,19 @@ export const HowItWorksPage: React.FC<HowItWorksPageProps> = ({ onTabChange }) =
         </div>
 
         {/* Reference Links & Key Takeaway */}
-        <div className="p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
+        <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
           <div className="space-y-1">
-            <span className="font-bold text-cyan-300">Key Scientific Result:</span>
-            <p className="text-slate-300">
-              Speculative decoding is strictly <strong>lossless</strong>. The output text is indistinguishable from running pure target-model autoregression.
+            <span className="font-semibold text-slate-200">Key Scientific Result:</span>
+            <p className="text-slate-400">
+              Speculative decoding is strictly <strong className="text-slate-200">lossless</strong>. The output text is indistinguishable from running pure target-model autoregression.
             </p>
           </div>
 
           <button
             onClick={() => onTabChange('demo')}
-            className="shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-colors cursor-pointer"
+            className="shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors cursor-pointer"
           >
-            <Zap className="w-3.5 h-3.5 fill-slate-950" />
+            <Zap className="w-3.5 h-3.5" />
             <span>Test in Playground</span>
           </button>
         </div>

@@ -15,13 +15,13 @@ export const Architecture: React.FC<ArchitectureProps> = ({ onTabChange }) => {
       <ArchitectureDiagram />
 
       {/* 2. Deep Dive: Memory Bandwidth vs Tensor Compute */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-6 sm:p-8 space-y-6 shadow-2xl">
-        <div className="flex items-center gap-2.5 border-b border-slate-850 pb-4">
-          <div className="p-2 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400">
+      <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 sm:p-8 space-y-6">
+        <div className="flex items-center gap-2.5 border-b border-slate-800 pb-4">
+          <div className="p-2 rounded-lg bg-slate-800 text-indigo-400">
             <Cpu className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white">
+            <h3 className="text-lg font-semibold text-white">
               Why Speculative Decoding Accelerates Inference: Memory Bandwidth Bottlenecks
             </h3>
             <p className="text-xs text-slate-400">
@@ -31,33 +31,33 @@ export const Architecture: React.FC<ArchitectureProps> = ({ onTabChange }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
-          
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2.5">
-            <div className="text-rose-400 font-bold font-mono uppercase text-[11px] flex items-center gap-1.5">
+
+          <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-2.5">
+            <div className="text-slate-500 font-semibold text-[11px] flex items-center gap-1.5">
               <span>01.</span> Memory Bandwidth Bound
             </div>
-            <h4 className="text-sm font-bold text-white">Standard Autoregression</h4>
-            <p className="text-slate-300 leading-relaxed">
+            <h4 className="text-sm font-semibold text-white">Standard Autoregression</h4>
+            <p className="text-slate-400 leading-relaxed">
               Generating 1 single token on a 70B model requires transferring ~140 GB of model weights from GPU HBM memory into compute registers. The GPU tensor cores sit 95% idle waiting for memory transfer.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2.5">
-            <div className="text-purple-400 font-bold font-mono uppercase text-[11px] flex items-center gap-1.5">
+          <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-2.5">
+            <div className="text-slate-500 font-semibold text-[11px] flex items-center gap-1.5">
               <span>02.</span> Lightweight Draft
             </div>
-            <h4 className="text-sm font-bold text-white">Small Model Arithmetic</h4>
-            <p className="text-slate-300 leading-relaxed">
+            <h4 className="text-sm font-semibold text-white">Small Model Arithmetic</h4>
+            <p className="text-slate-400 leading-relaxed">
               An 8B draft model requires only ~16 GB per step. It can generate 5 candidate tokens in ~15ms, consuming a fraction of the memory bandwidth of the large 70B target model.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2.5">
-            <div className="text-emerald-400 font-bold font-mono uppercase text-[11px] flex items-center gap-1.5">
+          <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-2.5">
+            <div className="text-slate-500 font-semibold text-[11px] flex items-center gap-1.5">
               <span>03.</span> Parallel Verification
             </div>
-            <h4 className="text-sm font-bold text-white">Compute Bound Batches</h4>
-            <p className="text-slate-300 leading-relaxed">
+            <h4 className="text-sm font-semibold text-white">Compute Bound Batches</h4>
+            <p className="text-slate-400 leading-relaxed">
               When verifying 5 tokens simultaneously, the 70B target model loads its 140 GB weights only ONCE. It performs matrix-matrix operations instead of matrix-vector operations, fully saturating tensor cores.
             </p>
           </div>
@@ -65,12 +65,12 @@ export const Architecture: React.FC<ArchitectureProps> = ({ onTabChange }) => {
         </div>
 
         {/* KV Cache Strategy Card */}
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 text-xs">
-          <div className="flex items-center gap-2 text-slate-200 font-bold font-mono">
-            <Database className="w-4 h-4 text-cyan-400" />
+        <div className="p-4 rounded-lg bg-slate-950 border border-slate-800 space-y-2 text-xs">
+          <div className="flex items-center gap-2 text-slate-200 font-semibold">
+            <Database className="w-4 h-4 text-indigo-400" />
             <span>KV Cache Tree Management &amp; PagedAttention</span>
           </div>
-          <p className="text-slate-300 leading-relaxed">
+          <p className="text-slate-400 leading-relaxed">
             In production deployments (e.g. vLLM, Medusa, TensorRT-LLM), draft candidates are organized as a speculative tree. Key-Value tensors for accepted branches are committed permanently to the target KV cache, while rejected branches are instantly rolled back with zero memory leak.
           </p>
         </div>
