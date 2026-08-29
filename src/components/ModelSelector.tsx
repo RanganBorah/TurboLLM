@@ -32,8 +32,13 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
   const isRunning = phase !== 'idle' && phase !== 'completed' && phase !== 'paused';
   const isCompleted = phase === 'completed';
 
-  const selectedTarget = targetModels.find(m => m.id === config.targetModelId) || targetModels[0];
-  const selectedDraft = draftModels.find(m => m.id === config.draftModelId) || draftModels[0];
+  const placeholderModel: ModelOption = {
+    id: '', name: 'No models available', type: 'target', paramSize: '—',
+    latencyPerStepMs: 0, memoryFootprintGb: 0,
+    description: 'Start the backend to load models from models/.',
+  };
+  const selectedTarget = targetModels.find(m => m.id === config.targetModelId) || targetModels[0] || placeholderModel;
+  const selectedDraft = draftModels.find(m => m.id === config.draftModelId) || draftModels[0] || placeholderModel;
 
   return (
     <div className="rounded-xl border border-slate-800 bg-slate-900 p-5 space-y-5">
