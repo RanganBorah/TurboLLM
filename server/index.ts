@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { DecodingRequest } from '../src/types';
 import { assertConfigured, config } from './config';
 import { statusSnapshot } from './llamaServerManager';
+import { listModels } from './modelRegistry';
 import { runSpeculative, runStandard, warmupModels } from './specDecode';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -14,12 +15,14 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/api/system-status', (_req, res) => {
-  let configured = true;
+  let binConfigured = true;
   try {
     assertConfigured();
   } catch {
-    configured = false;
+    binConfigured = false;
   }
+  const modelCount = listModels().length;
+  const configured = binConfigured && modelCount > 0;
   res.json({
     mode: 'backend',
     status: configured ? 'ready' : 'error',
@@ -27,40 +30,28 @@ app.get('/api/system-status', (_req, res) => {
     hardware: {
       gpu: 'Local GPU (see nvidia-smi on the host)',
       vramAvailableGb: 0,
-      kvCacheStatus: configured
-        ? 'llama.cpp local speculative decoding'
-        : 'Not configured — copy .env.example to .env and set model paths',
+      kvCacheStatus: !binConfigured
+        ? 'Not configured — copy .env.example to .env and set LLAMA_SERVER_BIN'
+        : modelCount === 0
+          ? 'No .gguf models found in models/ — add one to get started'
+          : `llama.cpp local speculative decoding (${modelCount} model${modelCount === 1 ? '' : 's'} available)`,
     },
-    supportedFeatures: ['speculative_decoding', 'local_inference', 'reconstructed_batch_visualization'],
+    supportedFeatures: ['speculative_decoding', 'local_inference', 'reconstructed_batch_visualization', 'custom_models'],
     servers: statusSnapshot(),
     configured,
   });
 });
 
 app.get('/api/models', (_req, res) => {
+  // Any .gguf dropped into models/ shows up here automatically — including
+  // your own fine-tuned/trained model — as an option for BOTH dropdowns.
+  // Which one acts as "target" vs "draft" is just which slot you pick it
+  // for; real speculative decoding still requires the pair to share a
+  // tokenizer (e.g. both Llama-3-family, or both Qwen-family).
+  const models = listModels().map(({ path: _path, ...rest }) => rest);
   res.json({
-    targetModels: [
-      {
-        id: 'local-target',
-        name: 'Llama 3.2 3B Instruct (local)',
-        type: 'target',
-        paramSize: '3B',
-        latencyPerStepMs: 0,
-        memoryFootprintGb: 2.0,
-        description: 'Local target model served via llama.cpp on your GPU.',
-      },
-    ],
-    draftModels: [
-      {
-        id: 'local-draft',
-        name: 'Llama 3.2 1B Instruct (local)',
-        type: 'draft',
-        paramSize: '1B',
-        latencyPerStepMs: 0,
-        memoryFootprintGb: 0.8,
-        description: 'Local draft model served via llama.cpp on your GPU.',
-      },
-    ],
+    targetModels: models.map((m) => ({ ...m, type: 'target' as const })),
+    draftModels: models.map((m) => ({ ...m, type: 'draft' as const })),
   });
 });
 

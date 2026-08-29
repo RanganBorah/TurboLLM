@@ -33,8 +33,11 @@ from a reputable GGUF repo such as bartowski's on Hugging Face):
 cp .env.example .env
 ```
 
-Edit `.env` and set `LLAMA_SERVER_BIN`, `TARGET_MODEL_PATH`, `DRAFT_MODEL_PATH`
-to the actual paths from steps 1–2.
+Edit `.env` and set `LLAMA_SERVER_BIN`. `TARGET_MODEL_PATH`/`DRAFT_MODEL_PATH`
+are optional now — they just tell the backend which pair to pre-load at
+startup so your first prompt isn't slowed down by cold-loading. Which
+models actually get used is chosen per-request from the dropdowns in the
+UI (see "Adding your own model" below).
 
 ## 4. Install dependencies and run
 
@@ -61,6 +64,37 @@ Runs a fixed prompt set through both modes on your own hardware and writes
 `server/data/benchmarkResults.json`, which powers the Benchmark tab. Until
 you run this, that tab shows an all-zero placeholder — it will never show
 fabricated numbers.
+
+## Adding your own model
+
+Drop any `.gguf` file into `models/` and it shows up automatically in
+**both** the Target and Draft dropdowns in the Live Demo playground — no
+code changes, no restart, no `.env` edits, and nothing already there gets
+removed. This works for a model you've fine-tuned/trained yourself, not
+just off-the-shelf downloads.
+
+```bash
+cp /path/to/your-model.gguf models/
+```
+
+Refresh the page (or just open the dropdown again — it refetches on load)
+and your model appears alongside Llama-3.2-3B/1B.
+
+**The one real constraint:** genuine speculative decoding requires the
+target and draft model to **share the same tokenizer** — pick two models
+from the same family (e.g. both Llama-3.x, or both Qwen2.5). Pairing
+mismatched families will make `llama-server` fail to load the draft model,
+and the error surfaces directly in the Live Demo UI as a backend error
+event rather than crashing anything.
+
+**A narrower limitation to know about:** prompts are currently formatted
+using the Llama-3 chat template (`<|begin_of_text|>...`) in
+`server/llamaClient.ts`'s `formatLlama3Prompt`. If your model isn't a
+Llama-3-family model, its special tokens won't mean anything to it and
+output quality will suffer (it may still run, just with a garbled system
+prompt). If you add a non-Llama model, either train/fine-tune it to expect
+that same template, or edit `formatLlama3Prompt` to use your model's
+actual chat template.
 
 ## Notes / limitations
 

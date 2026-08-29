@@ -20,6 +20,8 @@ export const config = {
 
 export function assertConfigured() {
   required('LLAMA_SERVER_BIN');
-  required('TARGET_MODEL_PATH');
-  required('DRAFT_MODEL_PATH');
+  // TARGET_MODEL_PATH/DRAFT_MODEL_PATH are optional warmup hints only —
+  // which models actually get loaded is chosen per-request from whatever
+  // .gguf files are found in models/ (see server/modelRegistry.ts), so a
+  // user can drop in their own trained model without touching .env at all.
 }

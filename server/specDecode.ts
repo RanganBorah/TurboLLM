@@ -1,6 +1,8 @@
 import { DecodingRequest, GenerationMetrics, SimulationStep, TokenItem } from '../src/types';
 import { ensureServer, portFor } from './llamaServerManager';
 import { completeOnce, formatLlama3Prompt, streamCompletion } from './llamaClient';
+import { resolveModelPath } from './modelRegistry';
+import { config } from './config';
 
 /**
  * Real speculative decoding generator.
@@ -23,7 +25,12 @@ export async function* runSpeculative(
   request: DecodingRequest,
   signal: AbortSignal
 ): AsyncGenerator<SimulationStep> {
-  await Promise.all([ensureServer('spec'), ensureServer('draftOnly')]);
+  const targetPath = resolveModelPath(request.config.targetModelId);
+  const draftPath = resolveModelPath(request.config.draftModelId);
+  await Promise.all([
+    ensureServer('spec', targetPath, draftPath),
+    ensureServer('draftOnly', draftPath),
+  ]);
   const specPort = portFor('spec');
   const draftPort = portFor('draftOnly');
 
@@ -179,7 +186,8 @@ export async function* runStandard(
   request: DecodingRequest,
   signal: AbortSignal
 ): AsyncGenerator<SimulationStep> {
-  await ensureServer('standard');
+  const targetPath = resolveModelPath(request.config.targetModelId);
+  await ensureServer('standard', targetPath);
   const port = portFor('standard');
   const formattedPrompt = formatLlama3Prompt(request.prompt);
   const maxTokens = request.config.maxTokens;
@@ -246,8 +254,18 @@ export async function* runStandard(
   yield emit('completed', 'Generation completed on local hardware.');
 }
 
+/**
+ * Optionally pre-loads the default target/draft pair (from .env) at
+ * startup so the first request isn't slowed down by cold model loading.
+ * Purely an optimization — skipped if no defaults are configured, and any
+ * request can still load a completely different model pair on demand.
+ */
 export async function warmupModels() {
-  await Promise.all([ensureServer('spec'), ensureServer('draftOnly')]);
+  if (!config.targetModelPath || !config.draftModelPath) return;
+  await Promise.all([
+    ensureServer('spec', config.targetModelPath, config.draftModelPath),
+    ensureServer('draftOnly', config.draftModelPath),
+  ]);
 }
 
 export { completeOnce };

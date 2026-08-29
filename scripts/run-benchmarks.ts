@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { DecodingConfig, DecodingRequest, GenerationMetrics } from '../src/types';
 import { runSpeculative, runStandard } from '../server/specDecode';
 import { stopAllServers } from '../server/llamaServerManager';
+import { listModels } from '../server/modelRegistry';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,9 +23,21 @@ const PROMPTS: { category: string; prompt: string }[] = [
   { category: 'Creative', prompt: 'Write a short poem about the ocean at night.' },
 ];
 
+// Picks the largest available model as target and smallest as draft —
+// works automatically with whatever .gguf files are in models/, including
+// a custom model you've added, without hardcoding IDs.
+const models = listModels();
+if (models.length < 2) {
+  console.error(`Need at least 2 .gguf files in models/ to benchmark (found ${models.length}).`);
+  process.exit(1);
+}
+const targetModelId = models[models.length - 1].id;
+const draftModelId = models[0].id;
+console.log(`Target: ${targetModelId}\nDraft: ${draftModelId}`);
+
 const BASE_CONFIG: DecodingConfig = {
-  targetModelId: 'local-target',
-  draftModelId: 'local-draft',
+  targetModelId,
+  draftModelId,
   gammaDraftTokens: 5,
   temperature: 0,
   maxTokens: 100,
