@@ -28,16 +28,20 @@ GGUF_FINAL_PATH = os.path.join(HERE, "output", "CustomModel 5.1.gguf")
 
 LLAMA_CPP_BIN = "C:/tools/llama.cpp"
 LLAMA_QUANTIZE_EXE = os.path.join(LLAMA_CPP_BIN, "llama-quantize.exe")
-CONVERT_SCRIPT_PATH = os.path.join(HERE, "convert_hf_to_gguf.py")
-CONVERT_SCRIPT_URL = "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/convert_hf_to_gguf.py"
+# The standalone convert_hf_to_gguf.py imports from a sibling `conversion`
+# package that isn't included when fetching the script alone — use a full
+# (shallow) clone of the repo instead so all its dependencies are present.
+LLAMA_CPP_SRC = "C:/tools/llama.cpp-src"
+CONVERT_SCRIPT_PATH = os.path.join(LLAMA_CPP_SRC, "convert_hf_to_gguf.py")
 
 
 def ensure_convert_script():
     if os.path.exists(CONVERT_SCRIPT_PATH):
         return
-    print(f"Fetching convert_hf_to_gguf.py from llama.cpp repo...")
-    urllib.request.urlretrieve(CONVERT_SCRIPT_URL, CONVERT_SCRIPT_PATH)
-    print(f"Saved to {CONVERT_SCRIPT_PATH}")
+    raise FileNotFoundError(
+        f"{CONVERT_SCRIPT_PATH} not found — clone llama.cpp there: "
+        f"git clone --depth 1 https://github.com/ggml-org/llama.cpp.git {LLAMA_CPP_SRC}"
+    )
 
 
 def merge_adapter():
@@ -85,6 +89,9 @@ def quantize():
 
 if __name__ == "__main__":
     os.makedirs(os.path.join(HERE, "output"), exist_ok=True)
-    merge_adapter()
+    if os.path.exists(os.path.join(MERGED_DIR, "model.safetensors")):
+        print(f"Merged model already exists at {MERGED_DIR}, skipping merge step.")
+    else:
+        merge_adapter()
     convert_to_gguf()
     quantize()

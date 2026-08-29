@@ -14,3 +14,5 @@ training/output/
 training/convert_hf_to_gguf.py
 training/train_checkpoints/
 training/wheels/
+training/__pycache__/
+__pycache__/
