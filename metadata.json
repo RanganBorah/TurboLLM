@@ -1,0 +1,6 @@
+{
+  "name": "SpecDecode — Speculative Decoding for LLM Inference",
+  "description": "Interactive research-grade frontend demonstration and benchmark laboratory for Speculative Decoding in Large Language Models.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
