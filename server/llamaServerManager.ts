@@ -19,7 +19,7 @@ function baseArgs(port: number, modelPath: string): string[] {
     '--host', '127.0.0.1',
     '--ctx-size', String(config.ctxSize),
     '--n-gpu-layers', String(config.gpuLayers),
-    '--flash-attn',
+    '--flash-attn', 'auto',
   ];
 }
 
