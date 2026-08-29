@@ -34,8 +34,8 @@ export const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ data }) => {
 
   const barChartData = data.comparisonSeries.map((item) => ({
     name: item.category,
-    'Standard (70B)': item.standardSpeed,
-    'Speculative (70B+8B)': item.speculativeSpeed,
+    'Standard (3B)': item.standardSpeed,
+    'Speculative (3B+1B)': item.speculativeSpeed,
     'Acceptance %': item.acceptanceRate,
     'Speedup': item.speedup
   }));
@@ -151,8 +151,8 @@ export const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ data }) => {
                   contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#e2e8f0', fontSize: '12px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px', paddingTop: '8px' }} />
-                <Bar dataKey="Standard (70B)" fill="#475569" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Speculative (70B+8B)" fill="#06b6d4" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Standard (3B)" fill="#475569" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="Speculative (3B+1B)" fill="#06b6d4" radius={[4, 4, 0, 0]} />
               </BarChart>
             ) : metricTab === 'calls' ? (
               <BarChart data={targetCallsData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -209,8 +209,8 @@ export const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ data }) => {
                   contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '8px', color: '#e2e8f0', fontSize: '12px' }}
                 />
                 <Legend wrapperStyle={{ fontSize: '12px' }} />
-                <Line type="monotone" dataKey="standardTimeMs" name="Standard (70B)" stroke="#f43f5e" strokeWidth={2} dot={{ r: 3 }} />
-                <Line type="monotone" dataKey="speculativeTimeMs" name="Speculative (70B+8B)" stroke="#06b6d4" strokeWidth={2.5} dot={{ r: 4 }} />
+                <Line type="monotone" dataKey="standardTimeMs" name="Standard (3B)" stroke="#f43f5e" strokeWidth={2} dot={{ r: 3 }} />
+                <Line type="monotone" dataKey="speculativeTimeMs" name="Speculative (3B+1B)" stroke="#06b6d4" strokeWidth={2.5} dot={{ r: 4 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -292,11 +292,11 @@ export const BenchmarkChart: React.FC<BenchmarkChartProps> = ({ data }) => {
         </div>
       </div>
 
-      {/* Mandatory Disclaimer */}
+      {/* Data provenance note */}
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 flex items-start gap-3 text-xs text-slate-400">
         <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
         <p className="leading-relaxed">
-          <strong>Disclaimer:</strong> Demo values are simulated based on standard speculative decoding benchmarks (Leviathan et al., Chen et al.). Real performance depends on model architecture, hardware (GPU memory bandwidth & tensor cores), batch size, sequence length, and draft-model alignment quality.
+          <strong>Data source:</strong> The summary banner and per-category comparison above are real measurements from <code className="text-cyan-300">npm run benchmarks</code> on this machine's own GPU. The sequence-length curve, γ-ablation curve, and model-pairing table below are illustrative reference points from published speculative decoding research (Leviathan et al., Chen et al.) — this project's benchmark script doesn't sweep those dimensions yet, so those sections stay empty until it does.
         </p>
       </div>
 
