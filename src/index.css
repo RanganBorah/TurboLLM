@@ -17,7 +17,7 @@
   }
 }
 
-/* Custom crisp dark scrollbar */
+/* Restrained scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -26,37 +26,35 @@
   background: rgba(2, 6, 23, 0.8);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(99, 102, 241, 0.25);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.45);
+  background: rgba(99, 102, 241, 0.45);
 }
 
-/* Sleek Interface background grid and glowing effects */
+/* Faint background grid — kept subtle, not a neon effect */
 .bg-grid-pattern {
   background-size: 32px 32px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 .bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.1) 0%, rgba(99, 102, 241, 0.05) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.06) 0%, transparent 60%);
 }
 
+/* Flat, consistent card surface used everywhere instead of ad-hoc
+   per-component glass/glow effects. */
 .sleek-card {
-  background-color: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(15 23 42);
+  border: 1px solid rgb(30 41 59);
 }
 
 .sleek-card-glow {
-  background-color: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.12);
+  background-color: rgb(15 23 42);
+  border: 1px solid rgb(30 41 59);
 }
 
 @keyframes pulse-subtle {
