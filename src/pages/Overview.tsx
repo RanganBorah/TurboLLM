@@ -44,7 +44,7 @@ export const Overview: React.FC<OverviewProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-3.5 h-3.5 text-red-400" />
             <span>Benchmark Highlights</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -63,7 +63,7 @@ export const Overview: React.FC<OverviewProps> = ({
             title="Speed Improvement"
             value={overviewMetrics.speedImprovement}
             description="Compared with standard autoregressive decoding"
-            icon={<TrendingUp className="w-4 h-4 text-indigo-400" />}
+            icon={<TrendingUp className="w-4 h-4 text-red-400" />}
           />
 
           {/* Card 2: Tokens / Second */}
@@ -73,7 +73,7 @@ export const Overview: React.FC<OverviewProps> = ({
             value={overviewMetrics.tokensPerSecond}
             unit="tok/s"
             description="Standard decoding comparison"
-            icon={<Zap className="w-4 h-4 text-indigo-400" />}
+            icon={<Zap className="w-4 h-4 text-red-400" />}
           />
 
           {/* Card 3: Acceptance Rate */}
@@ -82,7 +82,7 @@ export const Overview: React.FC<OverviewProps> = ({
             title="Acceptance Rate"
             value={`${overviewMetrics.acceptanceRate}%`}
             description="Percentage of draft tokens accepted by target"
-            icon={<Percent className="w-4 h-4 text-indigo-400" />}
+            icon={<Percent className="w-4 h-4 text-red-400" />}
           />
 
           {/* Card 4: Target Model Calls */}
@@ -91,7 +91,7 @@ export const Overview: React.FC<OverviewProps> = ({
             title="Target Model Calls"
             value={overviewMetrics.targetModelCalls}
             description="For 100 generated tokens (vs 100 standard calls)"
-            icon={<Cpu className="w-4 h-4 text-indigo-400" />}
+            icon={<Cpu className="w-4 h-4 text-red-400" />}
           />
 
         </div>
@@ -122,7 +122,7 @@ export const Overview: React.FC<OverviewProps> = ({
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => onTabChange('demo')}
-              className="flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-sm transition-colors cursor-pointer"
             >
               <span>Launch Live Playground</span>
               <ArrowRight className="w-4 h-4" />
