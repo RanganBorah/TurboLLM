@@ -42,28 +42,29 @@ export const Hero: React.FC<HeroProps> = ({
   ];
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-14 border-b border-slate-800/60 bg-radial-glow">
-      {/* Background Subtle Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+    <section className="relative overflow-hidden pt-8 pb-14 border-b border-red-900/30 bg-radial-glow">
+      {/* Background web pattern + subtle grid */}
+      <div className="absolute inset-0 bg-web-pattern pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs">
-            <Icon3D shape="spark" size={20} />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-red-900/50 text-slate-300 text-xs">
+            <Icon3D shape="spark" size={20} color="#ef4444" />
             <span>Next-Gen LLM Inference Acceleration</span>
           </div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs">
-            <Icon3D shape="ring" size={18} />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-blue-900/50 text-slate-400 text-xs">
+            <Icon3D shape="ring" size={18} color="#3b82f6" />
             <span>Target: 70B &bull; Draft: 8B (γ=5)</span>
           </div>
         </div>
 
         {/* Hero Title & Subtitle */}
         <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-            Supercharge <span className="text-indigo-400">LLM Inference</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight italic">
+            Supercharge <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-blue-500 not-italic">LLM Inference</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
             Speculative Decoding uses a fast draft model to predict multiple tokens while a powerful target model verifies them in parallel — reducing expensive inference steps and delivering up to <strong className="text-slate-200">2× faster generation</strong> with mathematical equivalence.
@@ -74,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({
             <button
               id="hero-try-demo-btn"
               onClick={onGoToDemo}
-              className="flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm sm:text-base transition-colors cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-sm sm:text-base transition-colors cursor-pointer comic-panel"
             >
               <span>Try Live Demo</span>
               <ArrowRight className="w-4 h-4" />
@@ -83,9 +84,9 @@ export const Hero: React.FC<HeroProps> = ({
             <button
               id="hero-see-how-btn"
               onClick={onGoToHowItWorks}
-              className="flex items-center gap-2 px-5 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium text-sm transition-colors"
+              className="flex items-center gap-2 px-5 py-3 rounded-lg bg-blue-700 hover:bg-blue-600 border border-blue-500/40 text-white font-semibold text-sm transition-colors"
             >
-              <BookOpen className="w-4 h-4 text-slate-400" />
+              <BookOpen className="w-4 h-4 text-blue-200" />
               <span>See How It Works</span>
             </button>
 
@@ -94,18 +95,18 @@ export const Hero: React.FC<HeroProps> = ({
               onClick={onTriggerGuidedDemo}
               className="flex items-center gap-2 px-4 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-medium text-xs sm:text-sm transition-colors"
             >
-              <Play className="w-3.5 h-3.5 text-slate-400" />
+              <Play className="w-3.5 h-3.5 text-red-400" />
               <span>Watch 20s Hackathon Demo</span>
             </button>
           </div>
         </div>
 
         {/* Interactive Speculative Decoding Animation Flow Banner */}
-        <div className="mt-12 max-w-4xl mx-auto rounded-xl border border-slate-800 bg-slate-900 p-5 sm:p-7">
+        <div className="mt-12 max-w-4xl mx-auto rounded-xl bg-slate-900 p-5 sm:p-7 comic-panel">
 
           <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-5">
             <div className="flex items-center gap-2">
-              <Layers className="w-4 h-4 text-indigo-400" />
+              <Layers className="w-4 h-4 text-red-400" />
               <span className="text-sm font-semibold text-slate-200">
                 Speculative Inference Pipeline
               </span>
@@ -135,9 +136,9 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Step 1: User Prompt */}
             <div className={`p-3.5 rounded-lg border transition-colors ${
-              animStep >= 0 ? 'bg-slate-950 border-indigo-500/40 text-slate-200' : 'bg-slate-950/50 border-slate-800 text-slate-500'
+              animStep >= 0 ? 'bg-slate-950 border-blue-500/40 text-slate-200' : 'bg-slate-950/50 border-slate-800 text-slate-500'
             }`}>
-              <div className="text-[10px] uppercase tracking-wide text-indigo-400 font-semibold mb-1">
+              <div className="text-[10px] uppercase tracking-wide text-blue-400 font-semibold mb-1">
                 1. Input Prompt
               </div>
               <div className="text-xs font-mono bg-slate-900 px-2 py-1.5 rounded border border-slate-800 text-slate-300">
@@ -148,9 +149,9 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Step 2: Draft Model */}
             <div className={`p-3.5 rounded-lg border transition-colors ${
-              animStep >= 1 ? 'bg-slate-950 border-indigo-500/40' : 'bg-slate-950/50 border-slate-800 opacity-60'
+              animStep >= 1 ? 'bg-slate-950 border-blue-500/40' : 'bg-slate-950/50 border-slate-800 opacity-60'
             }`}>
-              <div className="text-[10px] uppercase tracking-wide text-indigo-400 font-semibold mb-1">
+              <div className="text-[10px] uppercase tracking-wide text-blue-400 font-semibold mb-1">
                 2. Draft (8B)
               </div>
               <div className="text-[11px] font-medium text-slate-200">
@@ -184,9 +185,9 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Step 4: Target Model Verification */}
             <div className={`p-3.5 rounded-lg border transition-colors ${
-              animStep >= 2 ? 'bg-slate-950 border-indigo-500/40' : 'bg-slate-950/50 border-slate-800 opacity-60'
+              animStep >= 2 ? 'bg-slate-950 border-red-500/40' : 'bg-slate-950/50 border-slate-800 opacity-60'
             }`}>
-              <div className="text-[10px] uppercase tracking-wide text-indigo-400 font-semibold mb-1">
+              <div className="text-[10px] uppercase tracking-wide text-red-400 font-semibold mb-1">
                 4. Target (70B)
               </div>
               <div className="text-[11px] font-medium text-slate-200">

@@ -17,7 +17,7 @@
   }
 }
 
-/* Restrained scrollbar */
+/* Spider-Man themed scrollbar (red accent) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -26,11 +26,11 @@
   background: rgba(2, 6, 23, 0.8);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.25);
+  background: rgba(220, 38, 38, 0.35);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.45);
+  background: rgba(220, 38, 38, 0.55);
 }
 
 /* Faint background grid — kept subtle, not a neon effect */
@@ -42,7 +42,7 @@
 }
 
 .bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.10) 0%, rgba(29, 78, 216, 0.06) 45%, transparent 70%);
 }
 
 /* Flat, consistent card surface used everywhere instead of ad-hoc
@@ -55,6 +55,33 @@
 .sleek-card-glow {
   background-color: rgb(15 23 42);
   border: 1px solid rgb(30 41 59);
+}
+
+/* --- Spider-Man theme utilities --- */
+
+/* Subtle radiating "web" lines from the top center — an original
+   geometric pattern (not Marvel artwork), evokes the web-shooter motif. */
+.bg-web-pattern {
+  background-image:
+    repeating-conic-gradient(
+      from 0deg at 50% -20%,
+      rgba(220, 38, 38, 0.05) 0deg 1deg,
+      transparent 1deg 15deg
+    );
+}
+
+/* Comic-panel look: bold dark outline + slight offset "pop" shadow,
+   used selectively for hero/feature panels rather than every card. */
+.comic-panel {
+  border: 2px solid rgb(15 15 20);
+  box-shadow: 4px 4px 0 0 rgba(220, 38, 38, 0.35);
+}
+
+/* Halftone dot overlay — classic comic-print texture, used sparingly
+   as a background accent behind panels. */
+.bg-halftone {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 10px 10px;
 }
 
 @keyframes pulse-subtle {

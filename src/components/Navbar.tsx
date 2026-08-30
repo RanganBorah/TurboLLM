@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-3 cursor-pointer group"
           id="nav-brand-logo"
         >
-          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-600 to-blue-700 flex items-center justify-center group-hover:from-red-500 group-hover:to-blue-600 transition-colors">
             <Zap className="w-4 h-4 text-white" />
           </div>
           <div>
@@ -74,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onTabChange(item.id)}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-slate-800 text-white'
+                    ? 'bg-red-950/60 text-red-300 border border-red-800/60'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
                 }`}
               >
@@ -105,7 +105,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             id="nav-run-demo-btn"
             onClick={onTriggerDemo}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-colors"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-red-600 hover:bg-red-500 text-white font-semibold text-sm transition-colors"
           >
             <Play className="w-3.5 h-3.5" />
             <span>Run Demo</span>
@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => onTabChange(item.id)}
             className={`whitespace-nowrap px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
               activeTab === item.id
-                ? 'bg-slate-800 text-white'
+                ? 'bg-red-950/60 text-red-300 border border-red-800/60'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -132,10 +132,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Status Modal Info */}
       {showStatusModal && (
-        <div className="absolute right-6 top-18 z-50 w-80 p-4 rounded-lg bg-slate-900 border border-slate-800 shadow-xl text-xs space-y-2.5">
+        <div className="absolute right-6 top-18 z-50 w-80 p-4 rounded-lg bg-slate-900 comic-panel text-xs space-y-2.5">
           <div className="flex items-center justify-between pb-2 border-b border-slate-800">
             <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-indigo-400" />
+              <Layers className="w-3.5 h-3.5 text-red-400" />
               Runtime Architecture
             </span>
             <button
@@ -156,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <div className="flex justify-between">
                 <span>API Gateway:</span>
-                <span className="text-indigo-300">/api (server/index.ts)</span>
+                <span className="text-blue-300">/api (server/index.ts)</span>
               </div>
               <div className="flex justify-between">
                 <span>Target Model:</span>
@@ -168,7 +168,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
             <p className="text-[10px] text-slate-400">
-              Backend engineers can connect real vLLM / HuggingFace speculative decoding endpoints by implementing the exported handlers in <code className="text-indigo-300">src/services/api.ts</code>.
+              Backend engineers can connect real vLLM / HuggingFace speculative decoding endpoints by implementing the exported handlers in <code className="text-blue-300">src/services/api.ts</code>.
             </p>
           </div>
         </div>
