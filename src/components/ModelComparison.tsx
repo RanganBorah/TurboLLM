@@ -28,7 +28,7 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-indigo-400" />
+            <Layers className="w-5 h-5 text-red-400" />
             <h3 className="text-base font-semibold text-white tracking-tight">
               Architectural Comparison: Standard vs. Speculative Decoding
             </h3>
@@ -106,11 +106,11 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
         </div>
 
         {/* RIGHT PANEL: Speculative Decoding */}
-        <div className="rounded-lg border border-indigo-500/40 bg-slate-950 p-5 space-y-4 relative overflow-hidden flex flex-col justify-between">
+        <div className="rounded-lg border border-red-500/40 bg-slate-950 p-5 space-y-4 relative overflow-hidden flex flex-col justify-between comic-panel">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-indigo-300 flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-indigo-400" /> Speculative Decoding
+              <span className="text-xs font-semibold text-red-300 flex items-center gap-1.5">
+                <Zap className="w-4 h-4 text-red-400" /> Speculative Decoding
               </span>
               <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-medium">
                 Batch Verification (γ=5)
@@ -128,7 +128,7 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
             <div className="p-3 rounded-md bg-slate-900 border border-slate-800">
               <div className="flex items-center justify-between text-slate-300 text-[11px] font-semibold mb-1.5">
                 <span className="flex items-center gap-1">
-                  <Zap className="w-3.5 h-3.5 text-indigo-400" /> 1. Draft Model (8B) Rapid Generation
+                  <Zap className="w-3.5 h-3.5 text-blue-400" /> 1. Draft Model (8B) Rapid Generation
                 </span>
                 <span className="text-slate-500">~15ms total</span>
               </div>
@@ -141,7 +141,7 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
               </div>
             </div>
 
-            <div className="flex items-center justify-center text-indigo-400">
+            <div className="flex items-center justify-center text-red-400">
               <ArrowDown className="w-4 h-4 animate-bounce" />
             </div>
 
@@ -149,7 +149,7 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
             <div className="p-3 rounded-md bg-slate-900 border border-slate-800">
               <div className="flex items-center justify-between text-slate-300 text-[11px] font-semibold mb-1.5">
                 <span className="flex items-center gap-1">
-                  <Cpu className="w-3.5 h-3.5 text-indigo-400" /> 2. Target Model (70B) Single Forward Pass
+                  <Cpu className="w-3.5 h-3.5 text-red-400" /> 2. Target Model (70B) Single Forward Pass
                 </span>
                 <span className="text-slate-500">~28ms parallel</span>
               </div>
@@ -190,7 +190,7 @@ export const ModelComparison: React.FC<ModelComparisonProps> = ({
             </div>
             <div className="flex justify-between text-slate-300">
               <span>Total Execution Time:</span>
-              <strong className="text-indigo-300 font-semibold">~43 ms (vs 140 ms std)</strong>
+              <strong className="text-red-300 font-semibold">~43 ms (vs 140 ms std)</strong>
             </div>
             <p className="text-[11px] text-slate-400 pt-1 font-sans font-medium">
               &bull; Exact mathematical equivalence preserved — zero degradation in output quality!

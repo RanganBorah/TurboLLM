@@ -17,37 +17,37 @@ export const TechnicalCards: React.FC = () => {
     {
       title: 'Draft Model',
       tag: 'Candidate Proposer',
-      icon: <Zap className="w-5 h-5 text-indigo-400" />,
+      icon: <Zap className="w-5 h-5 text-red-400" />,
       description: 'Small and fast language model (e.g., 1.5B–8B parameters) used to autoregressively propose candidate token sequences with minimal memory bandwidth consumption.'
     },
     {
       title: 'Target Model',
       tag: 'Parallel Verifier',
-      icon: <Cpu className="w-5 h-5 text-indigo-400" />,
+      icon: <Cpu className="w-5 h-5 text-red-400" />,
       description: 'Larger and more capable model (e.g., 70B parameters) responsible for verifying predictions in a single batch forward pass on GPU tensor cores.'
     },
     {
       title: 'Acceptance Rate (α)',
       tag: 'Draft Quality Metric',
-      icon: <Percent className="w-5 h-5 text-indigo-400" />,
+      icon: <Percent className="w-5 h-5 text-red-400" />,
       description: 'The percentage of draft tokens accepted by the target model. Higher draft alignment yields higher acceptance rates, directly driving overall throughput gains.'
     },
     {
       title: 'Speedup Multiplier',
       tag: 'Throughput Gain',
-      icon: <TrendingUp className="w-5 h-5 text-indigo-400" />,
+      icon: <TrendingUp className="w-5 h-5 text-red-400" />,
       description: 'Improvement in generation throughput (tokens/second) compared with standard sequential autoregressive decoding, typically reaching 1.8× to 2.2× on modern GPUs.'
     },
     {
       title: 'Verification Step',
       tag: 'Mathematical Equivalence',
-      icon: <CheckCircle2 className="w-5 h-5 text-indigo-400" />,
+      icon: <CheckCircle2 className="w-5 h-5 text-red-400" />,
       description: 'The process through which the target model evaluates draft-model predictions against its exact probability distribution, guaranteeing zero degradation in output quality.'
     },
     {
       title: 'KV Cache Tree Pruning',
       tag: 'Memory Management',
-      icon: <Database className="w-5 h-5 text-indigo-400" />,
+      icon: <Database className="w-5 h-5 text-red-400" />,
       description: 'Efficient key-value cache handling is vital for speculative decoding. Speculative candidate branches are cached temporarily and pruned upon token rejection.'
     }
   ];
@@ -59,7 +59,7 @@ export const TechnicalCards: React.FC = () => {
       <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <div>
           <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-indigo-400" />
+            <BookOpen className="w-5 h-5 text-red-400" />
             <h3 className="text-base font-semibold text-white tracking-tight">
               Core Technical Concepts &amp; Terminology
             </h3>

@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
           {/* Brand & Purpose */}
           <div className="md:col-span-2 space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-red-600 to-blue-700 flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>
               <span className="font-semibold text-base text-white tracking-tight">
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               Accelerating Large Language Model inference through Speculative Decoding. Utilizing lightweight draft models for rapid candidate generation and powerful target models for parallel batched verification.
             </p>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-[11px] text-slate-300">
-              <Sparkles className="w-3 h-3 text-indigo-400" />
+              <Sparkles className="w-3 h-3 text-red-400" />
               <span>Built for Hackathon 2026</span>
             </div>
           </div>
@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('demo')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   Live Playground
                 </button>
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('how-it-works')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   Speculative Mechanics
                 </button>
@@ -56,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('about')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   KV Cache &amp; Tree Pruning
                 </button>
@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('benchmark')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   Gamma (γ) Ablation
                 </button>
@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('architecture')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   System Flow Diagram
                 </button>
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li>
                 <button
                   onClick={() => onTabChange('benchmark')}
-                  className="hover:text-indigo-400 transition-colors text-left"
+                  className="hover:text-red-400 transition-colors text-left"
                 >
                   Empirical Benchmarks
                 </button>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange }) => {
               <li className="text-slate-400">
                 Draft: Llama-3.2-1B
               </li>
-              <li className="text-indigo-400">
+              <li className="text-blue-400">
                 /api (server/index.ts)
               </li>
             </ul>
