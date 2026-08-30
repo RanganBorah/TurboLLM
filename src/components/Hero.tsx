@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Zap, 
-  ArrowRight, 
-  BookOpen, 
-  CheckCircle2, 
-  XCircle, 
-  Sparkles, 
-  Play, 
+import {
+  Zap,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  XCircle,
+  Play,
   RotateCcw,
-  Cpu,
   Layers,
   FastForward
 } from 'lucide-react';
+import { Icon3D } from './Icon3D';
 
 interface HeroProps {
   onGoToDemo: () => void;
@@ -52,11 +51,11 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Top Badges */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300 text-xs">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Icon3D shape="spark" size={20} />
             <span>Next-Gen LLM Inference Acceleration</span>
           </div>
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs">
-            <Cpu className="w-3 h-3 text-indigo-400" />
+            <Icon3D shape="ring" size={18} />
             <span>Target: 70B &bull; Draft: 8B (γ=5)</span>
           </div>
         </div>
