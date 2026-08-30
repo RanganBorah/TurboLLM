@@ -45,7 +45,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2">
-          <Sliders className="w-4 h-4 text-indigo-400" />
+          <Sliders className="w-4 h-4 text-red-400" />
           <h3 className="text-sm font-semibold text-slate-200">
             Decoding Configuration
           </h3>
@@ -62,7 +62,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
         <div className="space-y-1.5">
           <label className="text-xs font-medium text-slate-300 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-indigo-400" />
+              <Cpu className="w-3.5 h-3.5 text-red-400" />
               Target Verifier Model (Large)
             </span>
             <span className="text-[10px] text-slate-500 font-mono">
@@ -74,7 +74,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             value={config.targetModelId}
             disabled={isRunning}
             onChange={(e) => onConfigChange({ targetModelId: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 disabled:opacity-60 cursor-pointer"
+            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-red-500 disabled:opacity-60 cursor-pointer"
           >
             {targetModels.map((m) => (
               <option key={m.id} value={m.id}>
@@ -91,7 +91,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
         <div className="space-y-1.5">
           <label className="text-xs font-medium text-slate-300 flex items-center justify-between">
             <span className="flex items-center gap-1.5">
-              <Zap className="w-3.5 h-3.5 text-indigo-400" />
+              <Zap className="w-3.5 h-3.5 text-blue-400" />
               Draft Speculative Model (Small)
             </span>
             <span className="text-[10px] text-slate-500 font-mono">
@@ -103,7 +103,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             value={config.draftModelId}
             disabled={isRunning}
             onChange={(e) => onConfigChange({ draftModelId: e.target.value })}
-            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 disabled:opacity-60 cursor-pointer"
+            className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 disabled:opacity-60 cursor-pointer"
           >
             {draftModels.map((m) => (
               <option key={m.id} value={m.id}>
@@ -136,7 +136,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             disabled={isRunning}
             value={config.gammaDraftTokens}
             onChange={(e) => onConfigChange({ gammaDraftTokens: Number(e.target.value) })}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 disabled:opacity-60"
+            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-red-500 disabled:opacity-60"
           />
           <div className="flex justify-between text-[9px] text-slate-500">
             <span>3 tokens</span>
@@ -160,7 +160,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             disabled={isRunning}
             value={config.temperature}
             onChange={(e) => onConfigChange({ temperature: Number(e.target.value) })}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 disabled:opacity-60"
+            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-red-500 disabled:opacity-60"
           />
           <div className="flex justify-between text-[9px] text-slate-500">
             <span>0.0 (Greedy)</span>
@@ -184,7 +184,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             disabled={isRunning}
             value={config.maxTokens}
             onChange={(e) => onConfigChange({ maxTokens: Number(e.target.value) })}
-            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 disabled:opacity-60"
+            className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-red-500 disabled:opacity-60"
           />
           <div className="flex justify-between text-[9px] text-slate-500">
             <span>50</span>
@@ -275,7 +275,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
             id="run-speculative-btn"
             disabled={isRunning}
             onClick={onRunSpeculative}
-            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold transition-colors disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs sm:text-sm font-semibold transition-colors disabled:opacity-50 cursor-pointer"
           >
             <Zap className="w-4 h-4" />
             <span>Run Speculative Decoding</span>
